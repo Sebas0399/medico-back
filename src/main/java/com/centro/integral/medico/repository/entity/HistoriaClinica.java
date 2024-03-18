@@ -13,12 +13,11 @@ public class HistoriaClinica {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-
     private String numHist;
-
-    @OneToOne(fetch = FetchType.LAZY) // Add mappedBy
+    @OneToOne(fetch = FetchType.LAZY ,cascade = CascadeType.MERGE) // Add mappedBy
     @JoinColumn(name = "paciente_id")
+    @JsonManagedReference
+
     private Paciente paciente;
 
     private String enfermedadActual;
@@ -27,7 +26,6 @@ public class HistoriaClinica {
     private String diagnosticoAlta;
     @OneToMany(mappedBy = "historiaClinica")
     @JsonManagedReference
-
     private List<Tratamiento> tratamientos;
 
 

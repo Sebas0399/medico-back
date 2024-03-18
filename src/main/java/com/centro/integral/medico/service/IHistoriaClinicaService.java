@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface IHistoriaClinicaService {
     public Optional<HistoriaClinica> insertar(HistoriaClinica historiaClinica);
+
     public Optional<List<HistoriaClinica>> getAll();
 
 }
