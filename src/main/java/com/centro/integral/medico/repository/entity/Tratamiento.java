@@ -16,9 +16,8 @@ public class Tratamiento {
 
     private Integer id;
     List<String> indicaciones;
-    List<String> medicamento;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "historia_clinica_id",nullable = false)
-    @JsonBackReference // Anota en el inverso
+    List<String> medicamentos;
+    @ManyToOne
+    @JoinColumn(name = "historia_clinica_id")
     private HistoriaClinica historiaClinica;
 }

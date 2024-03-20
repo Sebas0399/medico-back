@@ -1,5 +1,6 @@
 package com.centro.integral.medico.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,7 +21,7 @@ public class SignosVitales {
     private Double talla;
     private Double so2;
     private String pc;
-    @OneToOne(mappedBy = "signosVitales", fetch = FetchType.LAZY) // Add mappedBy
-    @JoinColumn(name = "paciente_id")
-    private Paciente paciente;
+    @ManyToOne
+    @JoinColumn(name = "historia_clinica_id")
+    private HistoriaClinica historiaClinica;
 }

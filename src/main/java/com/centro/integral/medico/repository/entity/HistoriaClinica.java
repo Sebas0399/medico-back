@@ -1,8 +1,12 @@
 package com.centro.integral.medico.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 
@@ -14,19 +18,17 @@ public class HistoriaClinica {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String numHist;
-    @OneToOne(fetch = FetchType.LAZY ,cascade = CascadeType.MERGE) // Add mappedBy
-    @JoinColumn(name = "paciente_id")
-    @JsonManagedReference
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "paciente_id")
+    @JsonBackReference
     private Paciente paciente;
 
     private String enfermedadActual;
     private String examenFisico;
     private String diagnosticoIngreso;
     private String diagnosticoAlta;
-    @OneToMany(mappedBy = "historiaClinica")
-    @JsonManagedReference
-    private List<Tratamiento> tratamientos;
+
 
 
 }

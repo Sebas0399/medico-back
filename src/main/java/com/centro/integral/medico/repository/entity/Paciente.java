@@ -1,6 +1,7 @@
 package com.centro.integral.medico.repository.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -35,7 +36,24 @@ public class Paciente {
     private String sexo;
     private String estadoCivil;
     private String instruccionEducativa;
+    //
     private LocalDate fechaAdmision;
+    private String ocupacion;
+    private String empresaTrabajo;
+    private String tipoSeguro;
+    private String referido;
+    //
+    private String contactoEmergenciaNombre;
+    private String contactoEmergenciaAfinidad;
+    private String contactoEmergenciaDireccion;
+    private String contactoEmergenciaTelefono;
+
+    //
+    private String llegadaForma;
+    private String llegadaFuente;
+    private String llegadaEntrega;
+    private String llegadaTelefono;
+
     //Antecedentes
     private String app;
     private String apf;
@@ -43,13 +61,11 @@ public class Paciente {
     private String aqx;
     private String ago;
 
+    //
 
-    @OneToOne // Remove mappedBy from here
-    private SignosVitales signosVitales;
+    @OneToMany(mappedBy = "paciente")
+    @JsonManagedReference
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JsonBackReference
-
-    private HistoriaClinica historiaClinica;
+    private List<HistoriaClinica> historiasClinicas;
 
 }

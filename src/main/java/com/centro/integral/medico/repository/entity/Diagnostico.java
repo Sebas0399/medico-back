@@ -14,4 +14,7 @@ public class Diagnostico {
     private Integer id;
     private String ingreso;
     private String alta;
+    @ManyToOne
+    @JoinColumn(name = "historia_clinica_id")
+    private HistoriaClinica historiaClinica;
 }

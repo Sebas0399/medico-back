@@ -18,14 +18,7 @@ public class PacienteServiceImpl implements IPacienteService {
 
     @Override
     public Optional<Paciente> insertar(Paciente paciente) {
-        HistoriaClinica historiaClinica = new HistoriaClinica();
-        paciente.setHistoriaClinica(historiaClinica);
-        Paciente pacienteGuardado = pacienteRepository.save(paciente);
-
-        historiaClinica.setPaciente(paciente);
-        this.historiaClinicaRepository.save(historiaClinica);
-
-        return Optional.of(pacienteGuardado);
+        return Optional.of(this.pacienteRepository.save(paciente));
     }
 
     @Override
