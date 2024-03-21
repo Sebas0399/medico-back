@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,6 +23,11 @@ public class PacienteController {
     public Optional<Paciente> obtener(@PathVariable String cedula) {
 
         return pacienteService.obtener(cedula);
+    }
+    @GetMapping("nombre/{nombre}")
+    public Optional<List<Paciente>> obtenerPorNombre(@PathVariable String nombre) {
+
+        return pacienteService.obtenerPorNombre(nombre);
     }
 
     @PostMapping

@@ -7,6 +7,7 @@ import com.centro.integral.medico.repository.entity.Paciente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,5 +26,10 @@ public class PacienteServiceImpl implements IPacienteService {
     public Optional<Paciente> obtener(String cedula) {
         Optional<Paciente> pacienteEncontrado = pacienteRepository.findByCedula(cedula);
         return pacienteEncontrado;
+    }
+
+    @Override
+    public Optional<List<Paciente>> obtenerPorNombre(String nombre) {
+        return this.pacienteRepository.findByPrimerNombreContainingIgnoreCase(nombre);
     }
 }

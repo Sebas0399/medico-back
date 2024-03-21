@@ -18,6 +18,7 @@ public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column(unique = true)
     private String cedula;
     private String primerNombre;
     private String segundoNombre;
