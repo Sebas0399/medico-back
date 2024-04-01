@@ -1,14 +1,10 @@
 package com.centro.integral.medico.repository.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.Cascade;
 
-import java.util.List;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -28,7 +24,7 @@ public class HistoriaClinica {
     private String examenFisico;
     private String diagnosticoIngreso;
     private String diagnosticoAlta;
-
+    private LocalDate fecha;
 
 
 }

@@ -1,6 +1,5 @@
 package com.centro.integral.medico.controller;
 
-import com.centro.integral.medico.repository.entity.HistoriaClinica;
 import com.centro.integral.medico.repository.entity.Paciente;
 import com.centro.integral.medico.service.IPacienteService;
 import org.springframework.beans.BeanUtils;
@@ -21,12 +20,16 @@ public class PacienteController {
 
     @GetMapping("/{cedula}")
     public Optional<Paciente> obtener(@PathVariable String cedula) {
-
         return pacienteService.obtener(cedula);
     }
+
+    @GetMapping("id/{id}")
+    public Optional<Paciente> obtenerPorId(@PathVariable Integer id) {
+        return pacienteService.obtener(id);
+    }
+
     @GetMapping("nombre/{nombre}")
     public Optional<List<Paciente>> obtenerPorNombre(@PathVariable String nombre) {
-
         return pacienteService.obtenerPorNombre(nombre);
     }
 
@@ -34,16 +37,9 @@ public class PacienteController {
     public ResponseEntity<Paciente> guardar(@RequestBody Paciente paciente) {
         Optional<Paciente> pacienteEncontrado = this.pacienteService.obtener(paciente.getCedula());
         if (pacienteEncontrado.isEmpty()) {
-            System.out.println("Nuevo");
-
             return ResponseEntity.of(this.pacienteService.insertar(paciente));
         } else {
-            System.out.println("Actualizar");
-            System.out.println(paciente);
-
-            BeanUtils.copyProperties(paciente, pacienteEncontrado.get(),"id");
-            System.out.println(pacienteEncontrado);
-
+            BeanUtils.copyProperties(paciente, pacienteEncontrado.get(), "id");
             return ResponseEntity.of(this.pacienteService.insertar(pacienteEncontrado.get()));
 
 

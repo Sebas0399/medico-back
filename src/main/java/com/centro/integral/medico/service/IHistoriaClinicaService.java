@@ -10,4 +10,7 @@ public interface IHistoriaClinicaService {
 
     public Optional<List<HistoriaClinica>> getAll();
 
+    public Optional<List<HistoriaClinica>> getAllFromPaciente(Integer id);
+
+
 }

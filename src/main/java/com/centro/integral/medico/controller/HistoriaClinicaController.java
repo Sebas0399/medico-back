@@ -1,17 +1,14 @@
 package com.centro.integral.medico.controller;
 
-import com.centro.integral.medico.repository.HistoriaClinicaRepository;
 import com.centro.integral.medico.repository.entity.HistoriaClinica;
 import com.centro.integral.medico.repository.entity.Paciente;
-import com.centro.integral.medico.repository.entity.SignosVitales;
-import com.centro.integral.medico.repository.entity.Tratamiento;
-import com.centro.integral.medico.service.HistoriaClinicaService;
 import com.centro.integral.medico.service.IHistoriaClinicaService;
 import com.centro.integral.medico.service.IPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +23,8 @@ public class HistoriaClinicaController {
 
     @PostMapping
     public ResponseEntity<HistoriaClinica> guardar(@RequestBody HistoriaClinica historiaClinica) {
-        Optional<Paciente> paciente = this.pacienteService.obtener(historiaClinica.getPaciente().getCedula());
+        Optional<Paciente> paciente = this.pacienteService.obtener(historiaClinica.getPaciente().getId());
+        historiaClinica.setFecha(LocalDate.now());
         if (paciente.isEmpty()) {
             this.pacienteService.insertar(historiaClinica.getPaciente());
             return ResponseEntity.of(this.iHistoriaClinicaService.insertar(historiaClinica));
@@ -49,6 +47,12 @@ public class HistoriaClinicaController {
     @GetMapping
     public ResponseEntity<List<HistoriaClinica>> listarTodo() {
         return ResponseEntity.of(this.iHistoriaClinicaService.getAll());
+
+    }
+
+    @GetMapping("/{id}/paciente")
+    public ResponseEntity<List<HistoriaClinica>> listarHistoriasPaciente(@PathVariable String id) {
+        return ResponseEntity.of(this.iHistoriaClinicaService.getAllFromPaciente(Integer.valueOf(id)));
 
     }
 }
