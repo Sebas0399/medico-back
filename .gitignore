@@ -1,5 +1,7 @@
 HELP.md
 target/
+examenes/
+src/main/resources/examenes/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
