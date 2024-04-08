@@ -1,12 +1,8 @@
 package com.centro.integral.medico.repository.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,7 +12,7 @@ import java.util.List;
 @Table(name = "paciente")
 public class Paciente {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(unique = true)
     private String cedula;

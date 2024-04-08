@@ -1,6 +1,5 @@
 package com.centro.integral.medico.repository.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,7 +9,7 @@ import lombok.Data;
 
 public class SignosVitales {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer id;
     private String pa;

@@ -1,6 +1,5 @@
 package com.centro.integral.medico.repository.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,7 +11,7 @@ import java.util.List;
 
 public class Tratamiento {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer id;
     List<String> indicaciones;

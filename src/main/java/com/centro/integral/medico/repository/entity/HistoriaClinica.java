@@ -15,7 +15,7 @@ import java.util.Map;
 @Table(name = "historia_clinica")
 public class HistoriaClinica {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String numHist;
 

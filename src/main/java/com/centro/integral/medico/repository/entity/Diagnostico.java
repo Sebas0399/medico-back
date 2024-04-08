@@ -9,7 +9,7 @@ import lombok.Data;
 
 public class Diagnostico {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer id;
     private String ingreso;
